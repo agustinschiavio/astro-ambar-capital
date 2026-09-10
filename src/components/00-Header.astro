@@ -3,9 +3,9 @@ import { Image } from 'astro:assets';
 import logoSrc from '../assets/wordmark-horizontal-icontext.png';
 
 const navItems = [
-  { name: 'Por qué Ambar', href: '/#PorQueAmbar' },
-  { name: 'Servicios', href: '/#Servicios' },
-  { name: 'Cómo trabajamos', href: '/#ComoTrabajamos' },
+  { name: 'Cómo trabajamos', href: '/#HowA' },
+  { name: 'Nuestra filosofía', href: '/#02b-how' },
+  { name: 'Gestión Patrimonial Integral', href: '/#Servicios' },
   { name: 'Contacto', href: '/#Contacto' },
 ];
 ---
@@ -28,9 +28,15 @@ const navItems = [
       ))}
     </nav>
 
+    <!-- Persona / Empresa toggle (desktop) -->
+    <div class="hidden md:inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5 ml-8 shadow-sm">
+      <button id="toggle-persona" class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 bg-primary-dark text-white" data-target="persona">Persona</button>
+      <button id="toggle-empresa" class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 text-typography/50 hover:text-typography" data-target="empresa">Empresa</button>
+    </div>
+
     <!-- Pill CTA -->
-    <a href="https://calendar.app.google/yBvMKcWRFNcZLaH28" target="_blank" class="hidden md:inline-flex ml-8 items-center px-5 py-2.5 rounded-full bg-primary-dark text-white text-sm font-medium hover:bg-primary-dark/80 transition-all duration-300">
-      Reservá tu lugar
+    <a href="https://calendar.app.google/yBvMKcWRFNcZLaH28" target="_blank" class="hidden md:inline-flex ml-6 items-center px-5 py-2.5 rounded-full bg-primary-dark text-white text-sm font-medium hover:bg-primary-dark/80 transition-all duration-300">
+      Agendá una reunión
     </a>
 
     <div class="flex items-center space-x-4">
@@ -53,14 +59,57 @@ const navItems = [
   <nav id="mobile-menu" class="hidden md:hidden bg-premium-neutral w-full border-t border-premium-detail" role="navigation" aria-label="Mobile navigation">
     <div class="container-custom py-4 space-y-4">
       {navItems.map((item, index) => (
-        <a 
-          href={item.href} 
+        <a
+          href={item.href}
           class="block py-2 px-2 text-typography hover:text-signature-accent focus:text-signature-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-signature-accent focus:ring-offset-2 rounded"
           style={`transition-delay: ${index * 50}ms;`}
         >
           {item.name}
         </a>
       ))}
+      <!-- Persona / Empresa toggle (mobile) -->
+      <div class="pt-2 border-t border-premium-detail">
+        <div class="inline-flex rounded-full border border-gray-200 bg-white p-0.5 shadow-sm">
+          <button class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 bg-primary-dark text-white" data-target="persona">Persona</button>
+          <button class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 text-typography/50" data-target="empresa">Empresa</button>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
+
+<script>
+  const toggleBtns = document.querySelectorAll('.toggle-btn');
+  const personaContent = document.getElementById('hero-persona');
+  const empresaContent = document.getElementById('hero-empresa');
+  const lifeGoalsSection = document.getElementById('section-life-goals');
+
+  function setActive(target: string) {
+    toggleBtns.forEach(btn => {
+      const t = (btn as HTMLElement).dataset.target;
+      if (t === target) {
+        btn.classList.add('bg-primary-dark', 'text-white');
+        btn.classList.remove('text-typography/50');
+      } else {
+        btn.classList.remove('bg-primary-dark', 'text-white');
+        btn.classList.add('text-typography/50');
+      }
+    });
+
+    if (target === 'persona') {
+      personaContent?.classList.remove('hidden');
+      empresaContent?.classList.add('hidden');
+      lifeGoalsSection?.classList.remove('hidden');
+    } else {
+      empresaContent?.classList.remove('hidden');
+      personaContent?.classList.add('hidden');
+      lifeGoalsSection?.classList.add('hidden');
+    }
+  }
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setActive((btn as HTMLElement).dataset.target!);
+    });
+  });
+</script>

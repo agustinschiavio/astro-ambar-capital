@@ -3,20 +3,20 @@ import { Image } from 'astro:assets';
 import logoSrc from '../assets/wordmark-horizontal-icontext.png';
 
 const companyLinks = [
-  { name: 'Por qué Ambar', href: '/#PorQueAmbar' },
-  { name: 'Servicios', href: '/#Servicios' },
-  { name: 'Cómo trabajamos', href: '/#ComoTrabajamos' },
+  { name: 'Cómo trabajamos', href: '/#HowA' },
+  { name: 'Nuestra filosofía', href: '/#02b-how' },
+  { name: 'Gestión Patrimonial Integral', href: '/#Servicios' },
   { name: 'Contacto', href: '/#Contacto' },
 ];
 
 const legalLinks = [
-  { name: 'Términos y Condiciones', href: '/terms-of-use' },
-  { name: 'Política de Privacidad', href: '/privacy-policy' },
-  { name: 'Política de Cookies', href: '/cookie-policy' },
+  { name: 'Términos y condiciones', href: '/terms-of-use' },
+  { name: 'Política de privacidad', href: '/privacy-policy' },
+  { name: 'Política de cookies', href: '/cookie-policy' },
 ];
 ---
 
-<footer class="bg-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
+<footer class="bg-primary-dark text-premium-neutral pt-16 pb-8 relative overflow-hidden">
   <!-- Subtle background pattern -->
   <div class="absolute inset-0 opacity-5">
     <div class="absolute inset-0 bg-repeat" style="background-image: url('/grid-pattern.svg');"></div>
@@ -26,27 +26,27 @@ const legalLinks = [
   <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-signature-accent via-primary-dark to-signature-accent bg-[length:200%_auto] animate-gradient-x"></div>
   
   <div class="container-custom relative">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-gray-800">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-premium-neutral/10">
       <div class="lg:col-span-2">
         <a href="/" class="inline-block transition-transform duration-300 hover:scale-105" aria-label="Ambar home">
           <Image src={logoSrc} alt="Ambar Logo" width={155} height={52} class="brightness-0 invert" />
         </a>
-        <p class="mt-4 text-gray-400 max-w-md">
+        <p class="mt-4 text-premium-neutral/50 max-w-md">
           Ayudamos a empresas y personas a alcanzar sus objetivos financieros
         </p>
-        <a href="mailto:info@ambarcp.com" class="mt-3 inline-block text-gray-400 hover:text-white transition-colors duration-300 text-sm">
+        <a href="mailto:info@ambarcp.com" class="mt-3 inline-block text-premium-neutral/50 hover:text-premium-neutral transition-colors duration-300 text-sm">
           info@ambarcp.com
         </a>
       </div>
       
       <div>
-        <h3 class="text-lg font-semibold mb-4 text-white/90 hover:text-white transition-colors duration-300">Empresa</h3>
+        <h3 class="text-lg font-semibold mb-4 text-premium-neutral/90 hover:text-premium-neutral transition-colors duration-300">Empresa</h3>
         <ul class="space-y-3">
           {companyLinks.map((link, index) => (
             <li class="transform transition-all duration-300 hover:translate-x-1">
               <a 
                 href={link.href} 
-                class="text-gray-400 hover:text-white transition-colors duration-300 inline-block"
+                class="text-premium-neutral/50 hover:text-premium-neutral transition-colors duration-300 inline-block"
                 style={`transition-delay: ${index * 50}ms;`}
               >
                 {link.name}
@@ -57,13 +57,13 @@ const legalLinks = [
       </div>
             
       <div>
-        <h3 class="text-lg font-semibold mb-4 text-white/90 hover:text-white transition-colors duration-300">Legal</h3>
+        <h3 class="text-lg font-semibold mb-4 text-premium-neutral/90 hover:text-premium-neutral transition-colors duration-300">Legal</h3>
         <ul class="space-y-3">
           {legalLinks.map((link, index) => (
             <li class="transform transition-all duration-300 hover:translate-x-1">
               <a 
                 href={link.href} 
-                class="text-gray-400 hover:text-white transition-colors duration-300 inline-block"
+                class="text-premium-neutral/50 hover:text-premium-neutral transition-colors duration-300 inline-block"
                 style={`transition-delay: ${index * 50}ms;`}
               >
                 {link.name}
@@ -74,8 +74,8 @@ const legalLinks = [
       </div>
     </div>
     
-    <div class="pt-8 text-center text-gray-400 text-sm">
-      <p class="hover:text-gray-300 transition-colors duration-300">&copy; {new Date().getFullYear()} Ambar Capital Partners</p>
+    <div class="pt-8 text-center text-premium-neutral/40 text-sm">
+      <p class="hover:text-premium-neutral/60 transition-colors duration-300">&copy; {new Date().getFullYear()} Ambar Capital Partners</p>
     </div>
   </div>
 </footer>
