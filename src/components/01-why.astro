@@ -5,52 +5,80 @@ import home from '../assets/home.jpg';
 import retirement from '../assets/retirement.jpg';
 ---
 
-<section id="hero" class="relative bg-premium-neutral" style="height: 200vh;">
+<section id="hero" class="relative bg-premium-neutral">
 
-  <div id="hero-sticky" class="sticky top-0 h-screen overflow-visible">
-
-    <div class="container-custom h-full flex items-center relative">
-
-      <!-- Text: starts full-width centered (2 lines), animates to left half (4 lines) -->
-      <div id="hero-text" class="absolute will-change-transform" style="left: 0; width: 100%; text-align: center;">
-        <div id="hero-persona">
-          <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
-            Tus objetivos <br id="br-h1" style="display:none;" />son el destino
-          </h1>
-          <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight mt-8">
-            <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos <br id="br-h2" style="display:none;" />a llegar</span>
-          </h2>
-        </div>
-        <div id="hero-empresa" class="hidden">
-          <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
-            Tu empresa genera valor
-          </h1>
-          <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight mt-8">
-            <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">La estructura financiera no debería frenarlo</span>
-          </h2>
-        </div>
+  <!-- ===== MOBILE: static layout ===== -->
+  <div class="md:hidden py-20 px-6 flex flex-col items-center gap-10">
+    <div class="text-center">
+      <h1 class="font-heading text-4xl font-light leading-tight tracking-tight">
+        Tus objetivos son el destino
+      </h1>
+      <h2 class="font-heading text-4xl font-light leading-tight tracking-tight mt-6">
+        <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos a llegar</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-3 gap-3 w-full" style="height: 200px;">
+      <div class="rounded-xl overflow-hidden">
+        <Image src={vacations} alt="Vacaciones" class="w-full h-full object-cover" />
       </div>
-
-      <!-- Photos: right half -->
-      <div class="absolute right-0 hidden md:flex items-center gap-4" style="width: 48%; height: 55%;">
-        <div id="photo-1" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
-          <Image src={vacations} alt="Vacaciones" class="w-full h-full object-cover" />
-        </div>
-        <div id="photo-2" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
-          <Image src={home} alt="Casa propia" class="w-full h-full object-cover" />
-        </div>
-        <div id="photo-3" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
-          <Image src={retirement} alt="Retiro" class="w-full h-full object-cover" />
-        </div>
+      <div class="rounded-xl overflow-hidden">
+        <Image src={home} alt="Casa propia" class="w-full h-full object-cover" />
       </div>
-
+      <div class="rounded-xl overflow-hidden">
+        <Image src={retirement} alt="Retiro" class="w-full h-full object-cover" />
+      </div>
     </div>
   </div>
+
+  <!-- ===== DESKTOP: scroll animation ===== -->
+  <div class="hidden md:block" style="height: 200vh;">
+    <div id="hero-sticky" class="sticky top-0 h-screen overflow-visible">
+      <div class="container-custom h-full flex items-center relative">
+
+        <!-- Text: starts full-width centered (2 lines), animates to left half (4 lines) -->
+        <div id="hero-text" class="absolute will-change-transform" style="left: 0; width: 100%; text-align: center;">
+          <div id="hero-persona">
+            <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
+              Tus objetivos <br id="br-h1" style="display:none;" />son el destino
+            </h1>
+            <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight mt-8">
+              <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos <br id="br-h2" style="display:none;" />a llegar</span>
+            </h2>
+          </div>
+          <div id="hero-empresa" class="hidden">
+            <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
+              Tu empresa genera valor
+            </h1>
+            <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight mt-8">
+              <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">La estructura financiera no debería frenarlo</span>
+            </h2>
+          </div>
+        </div>
+
+        <!-- Photos: right half -->
+        <div class="absolute right-0 flex items-center gap-4" style="width: 48%; height: 55%;">
+          <div id="photo-1" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+            <Image src={vacations} alt="Vacaciones" class="w-full h-full object-cover" />
+          </div>
+          <div id="photo-2" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+            <Image src={home} alt="Casa propia" class="w-full h-full object-cover" />
+          </div>
+          <div id="photo-3" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+            <Image src={retirement} alt="Retiro" class="w-full h-full object-cover" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <script is:inline>
   (function () {
-    const section = document.getElementById('hero');
+    const sticky  = document.getElementById('hero-sticky');
+    if (!sticky) return;
+    const wrapper = sticky.closest('[style*="200vh"]');
     const text    = document.getElementById('hero-text');
     const br1     = document.getElementById('br-h1');
     const br2     = document.getElementById('br-h2');
@@ -63,23 +91,21 @@ import retirement from '../assets/retirement.jpg';
     function lerp(a, b, t) { return a + (b - a) * t; }
 
     function onScroll() {
-      const rect  = section.getBoundingClientRect();
-      const total = section.offsetHeight - window.innerHeight;
+      if (!wrapper) return;
+      const rect  = wrapper.getBoundingClientRect();
+      const total = wrapper.offsetHeight - window.innerHeight;
       const p     = clamp(-rect.top / total, 0, 1);
 
       const phase1 = ph(p, 0, 0.25);
       const done   = phase1 >= 1;
 
-      // Animate width 100%→50% and alignment
       text.style.width     = lerp(100, 48, phase1) + '%';
       text.style.textAlign = done ? 'left' : 'center';
 
-      // Show <br> only when in left-column position (4 lines)
       const showBreaks = done ? 'block' : 'none';
       if (br1) br1.style.display = showBreaks;
       if (br2) br2.style.display = showBreaks;
 
-      // Photos fall in sequentially
       [[photo1, 0.1, 0.3], [photo2, 0.2, 0.4], [photo3, 0.3, 0.5]].forEach(([el, s, e]) => {
         if (!el) return;
         const t = ph(p, s, e);

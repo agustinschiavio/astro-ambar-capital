@@ -31,7 +31,7 @@ const legalLinks = [
         <a href="/" class="inline-block transition-transform duration-300 hover:scale-105" aria-label="Ambar home">
           <Image src={logoSrc} alt="Ambar Logo" width={155} height={52} class="brightness-0 invert" />
         </a>
-        <p class="mt-4 text-premium-neutral/50 max-w-md">
+        <p class="mt-4 text-premium-neutral/50 max-w-md text-sm">
           Ayudamos a empresas y personas a alcanzar sus objetivos financieros
         </p>
         <a href="mailto:info@ambarcp.com" class="mt-3 inline-block text-premium-neutral/50 hover:text-premium-neutral transition-colors duration-300 text-sm">
@@ -40,13 +40,13 @@ const legalLinks = [
       </div>
       
       <div>
-        <h3 class="text-lg font-semibold mb-4 text-premium-neutral/90 hover:text-premium-neutral transition-colors duration-300">Empresa</h3>
+        <h3 class="text-sm font-semibold mb-4 text-premium-neutral/90 hover:text-premium-neutral transition-colors duration-300">Empresa</h3>
         <ul class="space-y-3">
           {companyLinks.map((link, index) => (
             <li class="transform transition-all duration-300 hover:translate-x-1">
               <a 
                 href={link.href} 
-                class="text-premium-neutral/50 hover:text-premium-neutral transition-colors duration-300 inline-block"
+                class="text-premium-neutral/50 hover:text-premium-neutral transition-colors duration-300 inline-block text-sm"
                 style={`transition-delay: ${index * 50}ms;`}
               >
                 {link.name}
@@ -57,13 +57,13 @@ const legalLinks = [
       </div>
             
       <div>
-        <h3 class="text-lg font-semibold mb-4 text-premium-neutral/90 hover:text-premium-neutral transition-colors duration-300">Legal</h3>
+        <h3 class="text-sm font-semibold mb-4 text-premium-neutral/90 hover:text-premium-neutral transition-colors duration-300">Legal</h3>
         <ul class="space-y-3">
           {legalLinks.map((link, index) => (
             <li class="transform transition-all duration-300 hover:translate-x-1">
               <a 
                 href={link.href} 
-                class="text-premium-neutral/50 hover:text-premium-neutral transition-colors duration-300 inline-block"
+                class="text-premium-neutral/50 hover:text-premium-neutral transition-colors duration-300 inline-block text-sm"
                 style={`transition-delay: ${index * 50}ms;`}
               >
                 {link.name}
