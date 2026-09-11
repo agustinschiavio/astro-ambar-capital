@@ -27,10 +27,9 @@ const navItems = [
       ))}
     </nav>
 
-    <!-- Persona / Empresa toggle (desktop) -->
+    <!-- Persona / Empresa toggle (desktop) — Empresa hidden until ready -->
     <div class="hidden md:inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5 ml-8 shadow-sm">
       <button id="toggle-persona" class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 bg-primary-dark text-white" data-target="persona">Persona</button>
-      <button id="toggle-empresa" class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 text-typography/50 hover:text-typography" data-target="empresa">Empresa</button>
     </div>
 
     <!-- Pill CTA -->
@@ -66,11 +65,10 @@ const navItems = [
           {item.name}
         </a>
       ))}
-      <!-- Persona / Empresa toggle (mobile) -->
+      <!-- Persona / Empresa toggle (mobile) — Empresa hidden until ready -->
       <div class="pt-2 border-t border-premium-detail">
         <div class="inline-flex rounded-full border border-gray-200 bg-white p-0.5 shadow-sm">
           <button class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 bg-primary-dark text-white" data-target="persona">Persona</button>
-          <button class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 text-typography/50" data-target="empresa">Empresa</button>
         </div>
       </div>
     </div>
