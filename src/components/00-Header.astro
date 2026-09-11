@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import logoSrc from '../assets/wordmark-horizontal-icontext.png';
+import logoSrc from '../assets/wordmark-horizontal-icontext.svg?url';
 
 const navItems = [
   { name: 'Cómo trabajamos', href: '/#HowA' },
@@ -13,7 +12,7 @@ const navItems = [
 <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100">
   <div class="container-custom flex items-center h-16">
     <a href="/" class="flex items-center transition-transform duration-300 hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-signature-accent focus:ring-offset-2 rounded" aria-label="Ambar home">
-      <Image src={logoSrc} alt="Ambar Logo" width={280} height={94} class="transition-all duration-300" style="width: 140px; height: auto;" />
+      <img src={logoSrc} alt="Ambar Logo" width="140" class="transition-all duration-300 h-auto" />
     </a>
 
     <!-- Desktop Nav -->
