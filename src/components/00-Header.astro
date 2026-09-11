@@ -2,9 +2,9 @@
 import logoSrc from '../assets/wordmark-horizontal-icontext.svg?url';
 
 const navItems = [
-  { name: 'Cómo trabajamos', href: '/#HowA' },
-  { name: 'Nuestra filosofía', href: '/#02b-how' },
-  { name: 'Gestión Patrimonial Integral', href: '/#Servicios' },
+  { name: 'Cómo trabajamos', href: '/#como-trabajamos' },
+  { name: 'Nuestra filosofía', href: '/#nuestra-filosofia' },
+  { name: 'Gestión Patrimonial Integral', href: '/#GPI', empresaName: 'Asesoría Financiera Empresarial' },
   { name: 'Contacto', href: '/#Contacto' },
 ];
 ---
@@ -21,6 +21,8 @@ const navItems = [
         <a
           href={item.href}
           class="text-typography/60 text-sm tracking-wide hover:text-typography focus:text-typography transition-all duration-300 focus:outline-none rounded px-2 py-1"
+          data-persona-name={item.name}
+          data-empresa-name={item.empresaName ?? item.name}
         >
           {item.name}
         </a>
@@ -40,9 +42,9 @@ const navItems = [
 
     <div class="flex items-center space-x-4">
       <!-- Mobile Menu Button -->
-      <button 
-        id="menu-toggle" 
-        class="md:hidden flex items-center transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-signature-accent focus:ring-offset-2 rounded p-1" 
+      <button
+        id="menu-toggle"
+        class="md:hidden flex items-center transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-signature-accent focus:ring-offset-2 rounded p-1"
         aria-label="Toggle navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -53,7 +55,7 @@ const navItems = [
       </button>
     </div>
   </div>
-  
+
   <!-- Mobile Menu -->
   <nav id="mobile-menu" class="hidden md:hidden bg-premium-neutral w-full border-t border-premium-detail" role="navigation" aria-label="Mobile navigation">
     <div class="container-custom py-4 space-y-4">
@@ -62,6 +64,8 @@ const navItems = [
           href={item.href}
           class="block py-2 px-2 text-typography hover:text-signature-accent focus:text-signature-accent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-signature-accent focus:ring-offset-2 rounded"
           style={`transition-delay: ${index * 50}ms;`}
+          data-persona-name={item.name}
+          data-empresa-name={item.empresaName ?? item.name}
         >
           {item.name}
         </a>
@@ -91,6 +95,13 @@ const navItems = [
         btn.classList.remove('bg-primary-dark', 'text-white');
         btn.classList.add('text-typography/50');
       }
+    });
+
+    // Update nav link labels
+    document.querySelectorAll('[data-persona-name]').forEach(el => {
+      const key = target === 'empresa' ? 'empresaName' : 'personaName';
+      const name = (el as HTMLElement).dataset[key];
+      if (name) el.textContent = name;
     });
 
     // Show/hide all persona-view and empresa-view elements across the page
