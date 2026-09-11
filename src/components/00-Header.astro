@@ -27,9 +27,10 @@ const navItems = [
       ))}
     </nav>
 
-    <!-- Persona / Empresa toggle (desktop) — Empresa hidden until ready -->
+    <!-- Persona / Empresa toggle (desktop) -->
     <div class="hidden md:inline-flex rounded-full border border-gray-200 bg-gray-50 p-0.5 ml-8 shadow-sm">
       <button id="toggle-persona" class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 bg-primary-dark text-white" data-target="persona">Persona</button>
+      <button id="toggle-empresa" class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 text-typography/50" data-target="empresa">Empresa</button>
     </div>
 
     <!-- Pill CTA -->
@@ -65,10 +66,11 @@ const navItems = [
           {item.name}
         </a>
       ))}
-      <!-- Persona / Empresa toggle (mobile) — Empresa hidden until ready -->
+      <!-- Persona / Empresa toggle (mobile) -->
       <div class="pt-2 border-t border-premium-detail">
         <div class="inline-flex rounded-full border border-gray-200 bg-white p-0.5 shadow-sm">
           <button class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 bg-primary-dark text-white" data-target="persona">Persona</button>
+          <button class="toggle-btn rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 text-typography/50" data-target="empresa">Empresa</button>
         </div>
       </div>
     </div>
@@ -77,11 +79,9 @@ const navItems = [
 
 <script>
   const toggleBtns = document.querySelectorAll('.toggle-btn');
-  const personaContent = document.getElementById('hero-persona');
-  const empresaContent = document.getElementById('hero-empresa');
-  const lifeGoalsSection = document.getElementById('section-life-goals');
 
-  function setActive(target: string) {
+  function setMode(target: string) {
+    // Update button styles
     toggleBtns.forEach(btn => {
       const t = (btn as HTMLElement).dataset.target;
       if (t === target) {
@@ -93,20 +93,18 @@ const navItems = [
       }
     });
 
-    if (target === 'persona') {
-      personaContent?.classList.remove('hidden');
-      empresaContent?.classList.add('hidden');
-      lifeGoalsSection?.classList.remove('hidden');
-    } else {
-      empresaContent?.classList.remove('hidden');
-      personaContent?.classList.add('hidden');
-      lifeGoalsSection?.classList.add('hidden');
-    }
+    // Show/hide all persona-view and empresa-view elements across the page
+    document.querySelectorAll('.persona-view').forEach(el => {
+      (el as HTMLElement).classList.toggle('hidden', target !== 'persona');
+    });
+    document.querySelectorAll('.empresa-view').forEach(el => {
+      (el as HTMLElement).classList.toggle('hidden', target !== 'empresa');
+    });
   }
 
   toggleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      setActive((btn as HTMLElement).dataset.target!);
+      setMode((btn as HTMLElement).dataset.target!);
     });
   });
 </script>

@@ -1,8 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import vacations from '../assets/vacations.jpg';
-import home from '../assets/home.jpg';
-import retirement from '../assets/retirement.jpg';
+import vacations    from '../assets/vacations.jpg';
+import home         from '../assets/home.jpg';
+import retirement   from '../assets/retirement.jpg';
+import cityAerial   from '../assets/city-aerial.jpg';
+import modernArch   from '../assets/modern-arch.jpg';
+import execView     from '../assets/executive-view.jpg';
 ---
 
 <section id="hero" class="relative bg-premium-neutral">
@@ -10,23 +13,36 @@ import retirement from '../assets/retirement.jpg';
   <!-- ===== MOBILE: static layout ===== -->
   <div class="md:hidden py-20 px-6 flex flex-col items-center gap-10">
     <div class="text-center">
-      <h1 class="font-heading text-4xl font-light leading-tight tracking-tight">
-        Tus objetivos son el destino
-      </h1>
-      <h2 class="font-heading text-4xl font-light leading-tight tracking-tight mt-6">
-        <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos a llegar</span>
-      </h2>
+      <!-- Persona -->
+      <div class="persona-view">
+        <h1 class="font-heading text-4xl font-light leading-tight tracking-tight">
+          Tus objetivos son el destino
+        </h1>
+        <h2 class="font-heading text-4xl font-light leading-tight tracking-tight mt-6">
+          <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos a llegar</span>
+        </h2>
+      </div>
+      <!-- Empresa -->
+      <div class="empresa-view hidden">
+        <h1 class="font-heading text-4xl font-light leading-tight tracking-tight">
+          Los objetivos de tu empresa son el destino
+        </h1>
+        <h2 class="font-heading text-4xl font-light leading-tight tracking-tight mt-6">
+          <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos a llegar</span>
+        </h2>
+      </div>
     </div>
-    <div class="grid grid-cols-3 gap-3 w-full" style="height: 200px;">
-      <div class="rounded-xl overflow-hidden">
-        <Image src={vacations} alt="Vacaciones" class="w-full h-full object-cover" />
-      </div>
-      <div class="rounded-xl overflow-hidden">
-        <Image src={home} alt="Casa propia" class="w-full h-full object-cover" />
-      </div>
-      <div class="rounded-xl overflow-hidden">
-        <Image src={retirement} alt="Retiro" class="w-full h-full object-cover" />
-      </div>
+    <!-- Persona photos -->
+    <div class="persona-view grid grid-cols-3 gap-3 w-full" style="height: 200px;">
+      <div class="rounded-xl overflow-hidden"><Image src={vacations}  alt="Vacaciones"  class="w-full h-full object-cover" /></div>
+      <div class="rounded-xl overflow-hidden"><Image src={home}       alt="Casa propia" class="w-full h-full object-cover" /></div>
+      <div class="rounded-xl overflow-hidden"><Image src={retirement} alt="Retiro"      class="w-full h-full object-cover" /></div>
+    </div>
+    <!-- Empresa photos -->
+    <div class="empresa-view hidden grid grid-cols-3 gap-3 w-full" style="height: 200px;">
+      <div class="rounded-xl overflow-hidden"><Image src={cityAerial} alt="Ciudad"      class="w-full h-full object-cover" /></div>
+      <div class="rounded-xl overflow-hidden"><Image src={modernArch} alt="Datos"       class="w-full h-full object-cover" /></div>
+      <div class="rounded-xl overflow-hidden"><Image src={execView}   alt="Horizonte"   class="w-full h-full object-cover" /></div>
     </div>
   </div>
 
@@ -35,9 +51,9 @@ import retirement from '../assets/retirement.jpg';
     <div id="hero-sticky" class="sticky top-0 h-screen overflow-visible">
       <div class="container-custom h-full flex items-center relative">
 
-        <!-- Text: starts full-width centered (2 lines), animates to left half (4 lines) -->
+        <!-- Text -->
         <div id="hero-text" class="absolute will-change-transform" style="left: 0; width: 100%; text-align: center;">
-          <div id="hero-persona">
+          <div id="hero-persona" class="persona-view">
             <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
               Tus objetivos <br id="br-h1" style="display:none;" />son el destino
             </h1>
@@ -45,55 +61,73 @@ import retirement from '../assets/retirement.jpg';
               <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos <br id="br-h2" style="display:none;" />a llegar</span>
             </h2>
           </div>
-          <div id="hero-empresa" class="hidden">
+          <div id="hero-empresa" class="empresa-view hidden">
             <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
-              Tu empresa genera valor
+              Los objetivos de tu empresa <br id="br-e1" style="display:none;" />son el destino
             </h1>
             <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight mt-8">
-              <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">La estructura financiera no debería frenarlo</span>
+              <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos <br id="br-e2" style="display:none;" />a llegar</span>
             </h2>
           </div>
         </div>
 
-        <!-- Photos: right half -->
-        <div class="absolute right-0 flex items-center gap-4" style="width: 48%; height: 55%;">
+        <!-- Persona photos -->
+        <div id="photos-persona" class="persona-view absolute right-0 flex items-center gap-4" style="width: 48%; height: 55%;">
           <div id="photo-1" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
-            <Image src={vacations} alt="Vacaciones" class="w-full h-full object-cover" />
+            <Image src={vacations}  alt="Vacaciones"  class="w-full h-full object-cover" />
           </div>
           <div id="photo-2" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
-            <Image src={home} alt="Casa propia" class="w-full h-full object-cover" />
+            <Image src={home}       alt="Casa propia" class="w-full h-full object-cover" />
           </div>
           <div id="photo-3" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
-            <Image src={retirement} alt="Retiro" class="w-full h-full object-cover" />
+            <Image src={retirement} alt="Retiro"      class="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        <!-- Empresa photos -->
+        <div id="photos-empresa" class="empresa-view hidden absolute right-0 flex items-center gap-4" style="width: 48%; height: 55%;">
+          <div id="photo-e1" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+            <Image src={cityAerial} alt="Ciudad"    class="w-full h-full object-cover" />
+          </div>
+          <div id="photo-e2" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+            <Image src={modernArch} alt="Datos"     class="w-full h-full object-cover" />
+          </div>
+          <div id="photo-e3" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+            <Image src={execView}   alt="Horizonte" class="w-full h-full object-cover" />
           </div>
         </div>
 
       </div>
     </div>
   </div>
-
 </section>
 
 <script is:inline>
   (function () {
-    const sticky  = document.getElementById('hero-sticky');
-    if (!sticky) return;
-    const wrapper = sticky.closest('[style*="200vh"]');
+    const section = document.getElementById('hero');
     const text    = document.getElementById('hero-text');
     const br1     = document.getElementById('br-h1');
     const br2     = document.getElementById('br-h2');
-    const photo1  = document.getElementById('photo-1');
-    const photo2  = document.getElementById('photo-2');
-    const photo3  = document.getElementById('photo-3');
+    const brE1    = document.getElementById('br-e1');
+    const brE2    = document.getElementById('br-e2');
+
+    const p1 = document.getElementById('photo-1');
+    const p2 = document.getElementById('photo-2');
+    const p3 = document.getElementById('photo-3');
+    const e1 = document.getElementById('photo-e1');
+    const e2 = document.getElementById('photo-e2');
+    const e3 = document.getElementById('photo-e3');
+
+    const desktop = section?.querySelector('[style*="200vh"]');
 
     function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
     function ph(p, s, e) { return clamp((p - s) / (e - s), 0, 1); }
     function lerp(a, b, t) { return a + (b - a) * t; }
 
     function onScroll() {
-      if (!wrapper) return;
-      const rect  = wrapper.getBoundingClientRect();
-      const total = wrapper.offsetHeight - window.innerHeight;
+      if (!desktop || !text) return;
+      const rect  = desktop.getBoundingClientRect();
+      const total = desktop.offsetHeight - window.innerHeight;
       const p     = clamp(-rect.top / total, 0, 1);
 
       const phase1 = ph(p, 0, 0.25);
@@ -102,11 +136,11 @@ import retirement from '../assets/retirement.jpg';
       text.style.width     = lerp(100, 48, phase1) + '%';
       text.style.textAlign = done ? 'left' : 'center';
 
-      const showBreaks = done ? 'block' : 'none';
-      if (br1) br1.style.display = showBreaks;
-      if (br2) br2.style.display = showBreaks;
+      const show = done ? 'block' : 'none';
+      [br1, br2, brE1, brE2].forEach(b => { if (b) b.style.display = show; });
 
-      [[photo1, 0.1, 0.3], [photo2, 0.2, 0.4], [photo3, 0.3, 0.5]].forEach(([el, s, e]) => {
+      [[p1, 0.1, 0.3], [p2, 0.2, 0.4], [p3, 0.3, 0.5],
+       [e1, 0.1, 0.3], [e2, 0.2, 0.4], [e3, 0.3, 0.5]].forEach(([el, s, e]) => {
         if (!el) return;
         const t = ph(p, s, e);
         el.style.opacity   = String(t);
