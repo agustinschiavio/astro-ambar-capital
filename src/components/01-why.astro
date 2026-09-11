@@ -1,48 +1,94 @@
 ---
 import { Image } from 'astro:assets';
-import heroImage from '../assets/hero-2.jpg';
+import vacations from '../assets/vacations.jpg';
+import home from '../assets/home.jpg';
+import retirement from '../assets/retirement.jpg';
 ---
 
-<section class="pt-20 pb-10 md:pt-28 md:pb-12 overflow-hidden relative">
-  <div class="container-custom relative">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div class="max-w-lg">
+<section id="hero" class="relative bg-premium-neutral" style="height: 200vh;">
 
-        <!-- Persona content -->
+  <div id="hero-sticky" class="sticky top-0 h-screen overflow-visible">
+
+    <div class="container-custom h-full flex items-center relative">
+
+      <!-- Text: starts full-width centered (2 lines), animates to left half (4 lines) -->
+      <div id="hero-text" class="absolute will-change-transform" style="left: 0; width: 100%; text-align: center;">
         <div id="hero-persona">
-          <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-relaxed tracking-tight">
-            Tus objetivos<br />son el destino
+          <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
+            Tus objetivos <br id="br-h1" style="display:none;" />son el destino
           </h1>
-          <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-normal tracking-tight mt-8">
-            <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos a llegar</span>
+          <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight mt-8">
+            <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Nosotros te ayudamos <br id="br-h2" style="display:none;" />a llegar</span>
           </h2>
         </div>
-
-        <!-- Empresa content -->
         <div id="hero-empresa" class="hidden">
           <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
-            Tu empresa<br />genera valor
+            Tu empresa genera valor
           </h1>
-          <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight mt-4">
+          <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight mt-8">
             <span class="text-premium-neutral" style="background-color: #0E1A26; padding: 2px 10px 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">La estructura financiera no debería frenarlo</span>
           </h2>
         </div>
       </div>
 
-      <div>
-        <div class="relative hover-zoom">
-          <div class="relative rounded-xl overflow-hidden">
-            <Image
-              src={heroImage}
-              alt="Ambar Capital Partners"
-              class="w-full h-auto"
-              width={700}
-              height={500}
-            />
-          </div>
+      <!-- Photos: right half -->
+      <div class="absolute right-0 hidden md:flex items-center gap-4" style="width: 48%; height: 55%;">
+        <div id="photo-1" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+          <Image src={vacations} alt="Vacaciones" class="w-full h-full object-cover" />
+        </div>
+        <div id="photo-2" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+          <Image src={home} alt="Casa propia" class="w-full h-full object-cover" />
+        </div>
+        <div id="photo-3" class="flex-1 h-full rounded-2xl will-change-transform" style="opacity: 0; transform: translateY(-60px); overflow: hidden;">
+          <Image src={retirement} alt="Retiro" class="w-full h-full object-cover" />
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+<script is:inline>
+  (function () {
+    const section = document.getElementById('hero');
+    const text    = document.getElementById('hero-text');
+    const br1     = document.getElementById('br-h1');
+    const br2     = document.getElementById('br-h2');
+    const photo1  = document.getElementById('photo-1');
+    const photo2  = document.getElementById('photo-2');
+    const photo3  = document.getElementById('photo-3');
+
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function ph(p, s, e) { return clamp((p - s) / (e - s), 0, 1); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function onScroll() {
+      const rect  = section.getBoundingClientRect();
+      const total = section.offsetHeight - window.innerHeight;
+      const p     = clamp(-rect.top / total, 0, 1);
+
+      const phase1 = ph(p, 0, 0.25);
+      const done   = phase1 >= 1;
+
+      // Animate width 100%→50% and alignment
+      text.style.width     = lerp(100, 48, phase1) + '%';
+      text.style.textAlign = done ? 'left' : 'center';
+
+      // Show <br> only when in left-column position (4 lines)
+      const showBreaks = done ? 'block' : 'none';
+      if (br1) br1.style.display = showBreaks;
+      if (br2) br2.style.display = showBreaks;
+
+      // Photos fall in sequentially
+      [[photo1, 0.1, 0.3], [photo2, 0.2, 0.4], [photo3, 0.3, 0.5]].forEach(([el, s, e]) => {
+        if (!el) return;
+        const t = ph(p, s, e);
+        el.style.opacity   = String(t);
+        el.style.transform = `translateY(${lerp(-60, 0, t)}px)`;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>

@@ -5,6 +5,11 @@
 @tailwind utilities;
 
 :root {
+  --color-primary-dark: #0E1A26;
+  --color-signature-accent: #A46B3C;
+  --color-premium-neutral: #F4F1EC;
+  --color-typography: #2B2B2B;
+  --color-premium-detail: #C8C5BE;
   --gradient-purple-blue: linear-gradient(135deg, #0e1a26 0%, #A46B3C 100%);
 }
 

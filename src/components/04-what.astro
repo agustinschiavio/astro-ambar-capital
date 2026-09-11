@@ -44,13 +44,12 @@ const quadrants = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
       {quadrants.map((q) => (
         <div class="flex flex-col gap-3 rounded-2xl border border-white/10 px-6 py-7">
-          <div class="text-premium-neutral/60" set:html={q.icon} />
-          <div>
-            <p class="text-premium-neutral font-medium text-base">
-              {q.sub}<span class="font-heading font-light italic text-premium-neutral/50"> · {q.label}</span>
-            </p>
+          <div class="flex items-center gap-3">
+            <div class="text-premium-neutral flex-shrink-0" set:html={q.icon} />
+            <p class="font-heading text-xl font-bold text-premium-neutral">{q.sub}</p>
           </div>
-          <p class="text-premium-neutral/40 text-sm leading-relaxed">{q.detail}</p>
+          <p class="font-heading text-base font-light italic text-premium-neutral/50">{q.label}</p>
+          <p class="text-premium-neutral/40 text-base leading-relaxed">{q.detail}</p>
         </div>
       ))}
     </div>
